@@ -20,7 +20,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     private Context mcontext;
     private List<NewsDetails> newsDetails;
 
-    public NewsAdapter(Context mcontext, List<NewsDetails> newsDetails, String[] newsURL) {
+    public NewsAdapter(Context mcontext, List<NewsDetails> newsDetails) {
         this.mcontext = mcontext;
         this.newsDetails = newsDetails;
     }
@@ -46,11 +46,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         newsViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mcontext, " " + news.getTextviewTitle(), Toast.LENGTH_LONG).show();
+               Toast.makeText(mcontext, " " + news.getTextviewTitle(), Toast.LENGTH_LONG).show();
 
-                //Intent intent = new Intent(Intent.ACTION_VIEW);
-                //intent.setData(Uri.parse(newsURL[newsViewHolder.getLayoutPosition()]));
-                //mcontext.startActivity(intent);
+               //Intent intent = new Intent(Intent.ACTION_VIEW);
+               //intent.setData(Uri.parse(newsUrl[newsViewHolder.getAdapterPosition()]));
+              // mcontext.startActivity(intent);
+                Intent intent = new Intent(mcontext, NewsDeatailsActivity.class);
+                intent.putExtra("web_url", news.getWebUrl());
+                mcontext.startActivity(intent);
             }
         });
     }
